@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XSS Challenge - Level 1</title>
+</head>
+<body style="text-align:center;">
+    <h1>Enter Your Name</h1>
+    <form method="POST">
+        <input type="text" name="username" placeholder="Your Name" required>
+        <button type="submit">Enter</button>
+    </form>
+    {% if username %}
+        <h2>Hello {{ username|safe }}!</h2>
+        {% if payload_level1 %}
+            <h2 style="color:MediumSeaGreen">XSS Payload Successful</h2>
+            <a href="/level2">Go to Level 2</a>
+        {% elif username %}
+            <h2 style="color:Tomato">XSS Payload Failed!<h2>
+        {% endif %}
+    {% endif %}
+</body>
+</html>
